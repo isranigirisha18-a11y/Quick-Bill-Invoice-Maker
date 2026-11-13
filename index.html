@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BillBloom is a colourful invoice maker with a live invoice preview and automatic totals.">
+  <title>BillBloom — Invoice Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-glow glow-one"></div><div class="page-glow glow-two"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="BillBloom home"><span class="brand-flower">✿</span><span>billbloom<span class="brand-period">.</span></span></a>
+      <div class="topbar-right"><span class="status-pill"><i></i> YOUR CREATIVE BILLING SPACE</span><span class="avatar">BB</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">THE LITTLE STUDIO FOR BIG IDEAS</p>
+        <h1>Make every<br><span>detail bloom.</span></h1>
+        <p class="hero-description">Turn your work into a beautiful, easy-to-read invoice. Add your details on the left and watch your invoice come to life on the right.</p>
+        <div class="hero-chips"><span>✦ Live preview</span><span>✦ Auto totals</span><span>✦ Print-ready</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-sun"></div><div class="art-card"><span class="art-stamp">PAID<br>WITH<br>CARE</span><div class="art-lines"><i></i><i></i><i></i></div><div class="art-flower">✿</div></div>
+        <span class="float-star star-a">✦</span><span class="float-star star-b">✳</span><span class="float-dot"></span>
+      </div>
+    </section>
+
+    <div class="workspace-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Invoice studio <span>↘</span></h2></div><button id="resetBtn" class="text-button" type="button">↻ Reset example</button></div>
+
+    <section class="workspace">
+      <div class="editor-panel">
+        <div class="panel-heading"><div class="panel-icon">✎</div><div><h3>Build your invoice</h3><p>Fill in the details below.</p></div><span class="step-label">01 / EDIT</span></div>
+
+        <div class="form-section">
+          <div class="section-title"><span class="section-number">01</span><div><h4>Your business</h4><p>Who is sending this invoice?</p></div></div>
+          <div class="field-grid">
+            <div class="field full"><label for="businessName">BUSINESS / YOUR NAME</label><input id="businessName" value="Bloom Creative Studio" placeholder="Your business name"></div>
+            <div class="field"><label for="businessEmail">EMAIL</label><input id="businessEmail" type="email" value="hello@bloomstudio.example" placeholder="you@example.com"></div>
+            <div class="field"><label for="invoiceNumber">INVOICE NUMBER</label><input id="invoiceNumber" value="BB-2026-001"></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title"><span class="section-number coral">02</span><div><h4>Client & date</h4><p>Who are you creating this for?</p></div></div>
+          <div class="field-grid">
+            <div class="field"><label for="customerName">CLIENT NAME</label><input id="customerName" value="Rhea Mehta" placeholder="Client name"></div>
+            <div class="field"><label for="invoiceDate">ISSUE DATE</label><input id="invoiceDate" type="date"></div>
+            <div class="field full"><label for="customerEmail">CLIENT EMAIL / ADDRESS</label><input id="customerEmail" value="aarav@example.com" placeholder="Client contact details"></div>
+          </div>
+        </div>
+
+        <div class="form-section items-section">
+          <div class="section-title"><span class="section-number yellow">03</span><div><h4>What did you create?</h4><p>Add each product or service.</p></div></div>
+          <div id="itemEditor" class="item-editor"></div>
+          <button id="addItemBtn" class="add-item-button" type="button"><span>＋</span> Add another item</button>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title"><span class="section-number mint">04</span><div><h4>Finishing touches</h4><p>A note and your tax setting.</p></div></div>
+          <div class="field-grid">
+            <div class="field"><label for="taxRate">GST RATE</label><div class="select-wrap"><select id="taxRate"><option value="0">0% — No GST</option><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div></div>
+            <div class="field"><label for="dueDate">PAYMENT DUE</label><input id="dueDate" type="date"></div>
+            <div class="field full"><label for="notes">NOTE TO YOUR CLIENT</label><textarea id="notes" rows="3">Thank you for supporting our little creative studio. We loved bringing this project to life!</textarea></div>
+          </div>
+        </div>
+        <div class="editor-footer"><span>✿ Your changes update the preview automatically.</span><span>BillBloom Studio</span></div>
+      </div>
+
+      <aside class="preview-column">
+        <div class="preview-toolbar"><div><span class="preview-dot"></span><strong>LIVE PREVIEW</strong></div><span>02 / PREVIEW</span></div>
+        <article class="invoice-preview" id="invoicePreview">
+          <div class="preview-top-stripe"></div>
+          <div class="invoice-inner">
+            <div class="invoice-brand-row">
+              <div class="preview-brand"><span class="preview-flower">✿</span><div><strong id="previewBusiness">Bloom Creative Studio</strong><small>MADE WITH IMAGINATION</small></div></div>
+              <div class="invoice-word">INVOICE<span>.</span></div>
+            </div>
+            <div class="invoice-meta"><div><small>INVOICE NUMBER</small><strong id="previewNumber">BB-2026-001</strong></div><div><small>ISSUED ON</small><strong id="previewDate">—</strong></div></div>
+            <div class="bill-to"><div><small>PREPARED FOR</small><h3 id="previewCustomer">Aarav Mehta</h3><p id="previewCustomerEmail">aarav@example.com</p></div><div class="due-stamp"><span>PAYMENT DUE</span><strong id="previewDue">—</strong></div></div>
+            <div class="preview-table-wrap"><table class="preview-table"><thead><tr><th>DESCRIPTION</th><th>QTY</th><th>RATE</th><th>AMOUNT</th></tr></thead><tbody id="previewItems"></tbody></table></div>
+            <div class="preview-bottom">
+              <div class="preview-note"><small>A LITTLE NOTE</small><p id="previewNotes">Thank you for supporting our little creative studio.</p><div class="thank-you">THANK YOU <span>✦</span></div></div>
+              <div class="preview-totals"><div><span>Subtotal</span><strong id="previewSubtotal">₹0.00</strong></div><div><span>GST (<b id="previewTaxRate">18</b>%)</span><strong id="previewTax">₹0.00</strong></div><div class="grand-total"><span>Total due</span><strong id="previewTotal">₹0.00</strong></div></div>
+            </div>
+            <div class="preview-footer"><span id="previewEmail">hello@bloomstudio.example</span><span>✿ BILLBLOOM</span></div>
+          </div>
+        </article>
+        <div class="preview-actions"><div class="preview-tip"><span>✦</span><p><strong>Looks good?</strong><br>Print it or save it as a PDF.</p></div><button id="printBtn" class="print-button" type="button"><span>↗</span> Print / Save PDF</button></div>
+        <p class="privacy-note">Your invoice is created in this browser. No account is needed.</p>
+      </aside>
+    </section>
+    <footer class="site-footer"><span>BILLBLOOM INVOICE STUDIO</span><span>Clear details. Happy clients. ✿</span></footer>
+  </main>
+</body>
+</html>
